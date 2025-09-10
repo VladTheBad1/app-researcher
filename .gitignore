@@ -1,0 +1,76 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache and temporary files
+.cache/
+cache/
+temp/
+tmp/
+*.tmp
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Browser data
+browser-data/
+sessions/
+chrome-data/
+
+# Screenshots and reports
+screenshots/
+reports/
+data/screenshots/
+data/reports/
+data/cache/
+
+# Build output
+dist/
+build/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+coverage/
+.nyc_output/
+
+# Local data
+data/*.json
+data/*.csv
+
+# Backups
+*.backup
+*.bak
+
+# Python (if using Ollama scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Docker
+.dockerignore

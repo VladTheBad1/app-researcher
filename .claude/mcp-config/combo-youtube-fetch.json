@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "youtube": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/youtube-transcript"]
+    },
+    "fetch": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/fetch"]
+    }
+  }
+}
