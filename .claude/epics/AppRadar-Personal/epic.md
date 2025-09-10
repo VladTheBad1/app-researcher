@@ -4,7 +4,7 @@ status: backlog
 created: 2025-09-10T03:57:58Z
 progress: 0%
 prd: .claude/prds/PRD-AppRadar-Personal.md
-github: [Will be updated when synced to GitHub]
+github: https://github.com/VladTheBad1/app-researcher/issues/1
 ---
 
 # Epic: AppRadar-Personal
@@ -78,16 +78,16 @@ High-level task categories that will be created:
 - **Quick Win**: Product Hunt collector operational in 1 day
 
 ## Tasks Created
-- [ ] 001.md - Setup Playwright MCP and browser automation foundation (parallel: false)
-- [ ] 002.md - Build Product Hunt collector (parallel: true)
-- [ ] 003.md - Build IndieHackers collector (parallel: true)
-- [ ] 004.md - Build Twitter/X collector (parallel: true)
-- [ ] 005.md - Build Exploding Topics collector (parallel: true)
-- [ ] 006.md - Implement scoring engine and opportunity evaluation (parallel: false)
-- [ ] 007.md - Setup AI analysis (parallel: false)
-- [ ] 008.md - Create report generator and notification system (parallel: false)
-- [ ] 009.md - Add scheduling and orchestration layer (parallel: true)
-- [ ] 010.md - Package for easy deployment (parallel: false)
+- [ ] #2 - Setup Playwright MCP and browser automation foundation (parallel: false)
+- [ ] #3 - Build Product Hunt collector (parallel: true)
+- [ ] #4 - Build IndieHackers collector (parallel: true)
+- [ ] #5 - Build Twitter/X collector (parallel: true)
+- [ ] #6 - Build Exploding Topics collector (parallel: true)
+- [ ] #7 - Implement scoring engine and opportunity evaluation (parallel: false)
+- [ ] #8 - Setup AI analysis (parallel: false)
+- [ ] #9 - Create report generator and notification system (parallel: false)
+- [ ] #10 - Add scheduling and orchestration layer (parallel: true)
+- [ ] #11 - Package for easy deployment (parallel: false)
 
 Total tasks: 10
 Parallel tasks: 5
