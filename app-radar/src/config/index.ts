@@ -35,6 +35,10 @@ const envSchema = z.object({
   // Optional proxy
   PROXY_ENABLED: z.string().default('false').transform(val => val === 'true'),
   PROXY_URL: z.string().optional(),
+  
+  // API Keys
+  TWITTER_BEARER_TOKEN: z.string().optional(),
+  PRODUCTHUNT_API_KEY: z.string().optional(),
 });
 
 function loadConfig(): AppConfig {
@@ -70,7 +74,7 @@ function loadConfig(): AppConfig {
       {
         source: 'producthunt',
         enabled: true,
-        interval: 60,
+        interval: 60, // 1 hour
         maxPages: 5,
         rateLimitMs: 2000,
         retryAttempts: 3,
@@ -82,12 +86,31 @@ function loadConfig(): AppConfig {
       {
         source: 'indiehackers',
         enabled: true,
-        interval: 120,
+        interval: 120, // 2 hours
         maxPages: 3,
         rateLimitMs: 3000,
         retryAttempts: 3,
         filters: {
           keywords: ['startup', 'saas', 'tool', 'app'],
+        }
+      },
+      {
+        source: 'exploding-topics',
+        enabled: true,
+        interval: 240, // 4 hours
+        maxPages: 2,
+        rateLimitMs: 5000,
+        retryAttempts: 2,
+      },
+      {
+        source: 'twitter',
+        enabled: !!env.TWITTER_BEARER_TOKEN,
+        interval: 30, // 30 minutes
+        maxPages: 10,
+        rateLimitMs: 1000,
+        retryAttempts: 3,
+        filters: {
+          keywords: ['#buildinpublic', '#indiehackers', '#startup'],
         }
       }
     ]
@@ -99,8 +122,31 @@ export const appConfig = loadConfig();
 export function validateConfig(): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
   
+  // Check required directories exist
+  const requiredDirs = ['./data', './logs'];
+  for (const dir of requiredDirs) {
+    try {
+      const fs = await import('fs');
+      if (!fs.existsSync(dir)) {
+        await fs.promises.mkdir(dir, { recursive: true });
+      }
+    } catch (error) {
+      errors.push(`Failed to create directory ${dir}: ${error}`);
+    }
+  }
+  
+  // Validate browser config
   if (appConfig.browser.timeout < 5000) {
     errors.push('Browser timeout should be at least 5 seconds');
+  }
+  
+  if (appConfig.browser.maxConcurrent > 10) {
+    errors.push('Max concurrent browsers should not exceed 10');
+  }
+  
+  // Validate rate limiting
+  if (appConfig.rateLimit.requestDelayMin >= appConfig.rateLimit.requestDelayMax) {
+    errors.push('REQUEST_DELAY_MIN must be less than REQUEST_DELAY_MAX');
   }
   
   return {
